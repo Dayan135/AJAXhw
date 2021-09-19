@@ -1,0 +1,20 @@
+body{
+    background: #b3c795;
+}
+
+#main{
+    text-align: center;
+}
+
+textarea{
+    width:700px;
+    height: 250px;
+}
+
+img{
+    width:20em;
+}
+
+h1{
+    text-decoration: underline;
+}

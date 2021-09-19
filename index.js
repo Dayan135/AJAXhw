@@ -22,7 +22,11 @@ async function clickHandler(){
 function changeReqStatus(status){
     let img = document.createElement("img");
     img.setAttribute("src","https://http.cat/" + status)
-    document.getElementById("reqStatus").innerText = "Status: \n";
+
+    let title = document.createElement("h1");
+    title.textContent = "Status"
+
+    document.getElementById("reqStatus").appendChild(title);
     document.getElementById("reqStatus").appendChild(img);
 }
 
@@ -31,7 +35,7 @@ function changeResault(resObj){
     if(!resObj){
         let textElem = document.createElement("p");
         textElem.textContent = "ERROR ";
-        document.getElementById("rasult").appendChild(textElem);
+        document.getElementById("result").appendChild(textElem);
         return;
     }
 
@@ -66,6 +70,12 @@ function getColor(num){
 
 function newWin(){
     let el = document.getElementById("result");
+    while(el.firstChild){
+        console.log(el)
+        el.removeChild(el.firstChild)
+    }
+
+    el = document.getElementById("reqStatus");
     while(el.firstChild){
         console.log(el)
         el.removeChild(el.firstChild)

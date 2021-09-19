@@ -4,13 +4,16 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
         <script src = "index.js"></script>
         <title>Sentiment Analysis</title>
     </head>
     <body>
-        <textarea id = "input"></textarea>
-        <br>
-        <button onclick = "clickHandler()">Check!</button>
+        <div id="main">
+            <textarea id = "input" placeholder="Insert text to analyze..."></textarea>
+            <br>
+            <button onclick = "clickHandler()">Check!</button>
+        </div>
         <div id = "result"></div>
         <div id = "reqStatus"></div>
     </body>
