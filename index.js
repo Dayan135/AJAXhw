@@ -10,5 +10,64 @@ async function clickHandler(){
     }
     //console.log(msg)
     const response = await fetch("https://sentim-api.herokuapp.com/api/v1/",msg)
-    console.log(await response.json())
+    if(!response.ok){
+        changeResault(null)
+    }
+    else{
+        changeResault((await response.json()).result)
+    }
+    changeReqStatus(response.status)
+}
+
+function changeReqStatus(status){
+    let img = document.createElement("img");
+    img.setAttribute("src","https://http.cat/" + status)
+    document.getElementById("reqStatus").innerText = "Status: \n";
+    document.getElementById("reqStatus").appendChild(img);
+}
+
+function changeResault(resObj){
+    newWin()
+    if(!resObj){
+        let textElem = document.createElement("p");
+        textElem.textContent = "ERROR ";
+        document.getElementById("rasult").appendChild(textElem);
+        return;
+    }
+
+    document.getElementById("result").style.color = getColor(resObj.polarity);;
+
+    let titleElem = document.createElement("h1");
+    titleElem.textContent = "Resault";
+    document.getElementById("result").appendChild(titleElem)
+
+    let textElem = document.createElement("p");
+    textElem.textContent = "Type: " + resObj.type;
+    document.getElementById("result").appendChild(textElem);
+
+    textElem = document.createElement("p");
+    textElem.textContent = "Polarity: " + resObj.polarity;
+    document.getElementById("result").appendChild(textElem);
+}
+
+function getColor(num){
+    let color
+    if(num > 0){
+        color = "green";
+    }
+    else if(num < 0){
+        color = "red";
+    }
+    else {
+        color = "gray";
+    }
+    return color
+}
+
+function newWin(){
+    let el = document.getElementById("result");
+    while(el.firstChild){
+        console.log(el)
+        el.removeChild(el.firstChild)
+    }
 }
