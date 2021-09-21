@@ -1,4 +1,5 @@
 async function clickHandler(){
+    document.getElementById("loader").style.visibility = "visible"
     const textInpt = document.getElementById("input").value
     const msg = {
         method:"POST",
@@ -17,6 +18,7 @@ async function clickHandler(){
         changeResault((await response.json()).result)
     }
     changeReqStatus(response.status)
+    document.getElementById("loader").style.visibility = "hidden"
 }
 
 function changeReqStatus(status){
